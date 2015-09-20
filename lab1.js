@@ -58,6 +58,11 @@ assert(1 === 2, 'this is an example of a failing assertion. 1 does not equal 2.'
 */
 
 //your code goes here
+assert('lion' > 'bear', '"Lion" is alphabetically after "Bear", so it evaluates ' +
+  'as greater. This assert will pass.');
+assert((('lions' > 'tigers') && ('tigers' > 'bears')), '"Tigers" is alphabetically ' +
+  ' greater than "Bears," but "Lions" is not greater than "Tigers." ' +
+  'This assert will fail.');
 
 /* ========================================================================
 ----------------- Meerkats (20 points total)-------------------------------
@@ -78,11 +83,31 @@ var sentence2 = 'Come over here so you can scratch my belly.';
 // 'chirp' (10 points)
 
 // your code goes here
+var threeChirps = sentence1.split(' ');
+sentence1 = '';
+
+for (var i = 0; i < 3; i++) {
+  threeChirps[i] = 'chirp';
+  sentence1 = sentence1 + ' ' + threeChirps[i];
+}
+
+sentence1 = sentence1.trim() + '.';
 
 // TODO: part #2: use a while or do-while loop to replace the words in sentence 2
 // with 'chirp' (10 points)
 
 // your code goes here
+var nineChirps = sentence2.split(' ');
+var count = 0;
+sentence2 = '';
+
+while (count < 9) {
+  nineChirps[count] = 'chirp';
+  sentence2 = sentence2 + ' ' + nineChirps[count];
+  count++;
+}
+
+sentence2 = sentence2.trim() + '.';
 
 // Leave these assertions as-is! If they pass, your code works.
 assert(sentence1 === 'chirp chirp chirp.', 'sentence 1 should have 3 chirps');
@@ -105,6 +130,8 @@ var nextAnimal;
 // Assign one of your favorite animals to nextAnimal using Math.random() to pick
 
 // your code goes here
+var randomNum = Math.floor((Math.random() * 4));
+nextAnimal = favoriteAnimals[randomNum];
 
 assert(nextAnimal, 'assign something to nextAnimal');
 
@@ -134,6 +161,25 @@ var tooHungryDay;
 */
 
 // your code goes here
+var avgMeals = 10;
+var dayIndex = 0;
+var totalMeals = 0;
+
+while (avgMeals >= 4) {
+
+  for (var i = 0; i <= dayIndex; i++) {
+    totalMeals = totalMeals + mealsPerDay[i];
+  }
+  avgMeals = totalMeals / (dayIndex + 1);
+  console.log('Day ' + (dayIndex + 1) + ' Average: ' + avgMeals);
+  if (avgMeals < 4) {
+    tooHungryDay = dayIndex + 1;
+  }
+  totalMeals = 0;
+  dayIndex++;
+}
+
+console.log('The lion is too hungry on Day ' + tooHungryDay + '.');
 
 assert(tooHungryDay, 'remember to assign the answer to tooHungryDay');
 assert(tooHungryDay < 10, 'the lion is too hungry before the end of the array');
